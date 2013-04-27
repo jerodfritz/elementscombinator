@@ -23,16 +23,22 @@ $(function() {
         $("#results").html(data);
         var data = JSON.parse(response);
         var html = '<div class="results">';
+        html += '<div id="results-total">Total Results : ' + data.length + '</div>';
+        html += '<div id="results-list"><ol>';
         for (var i = 0; i < data.length; i++) {
           var item = data[i];
-          var row = '<div class="row"><div class="value-label">' + item.value + '</div> : ';
+          var row = '<div class="row">';
+          row += '<li>';
+          row += '<div class="value-label">' + item.value + '</div> : ';
           for (var ii = 0; ii < item.combo.length; ii++) {
             var element = item.combo[ii];
             row += "<div class='element-button' style='background-color:" + element.color + "'>" + element.element + "</div> ";
           }
+          row += "</li>";
           row += "</div>";
           html += row;
         }
+        html += "</ol></div>";
         html += "</div>";
         container.html(html);
       },

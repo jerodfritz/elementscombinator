@@ -39,13 +39,11 @@ body {
   margin-right: -2px;
   color: #fff;
 }
-.results {
-  padding-left: 2em;
-}
 .value-label {
   display: inline-block;
-  width: 52px;
-  font-size: 14px;
+  color: #333;
+  background: #ccc;
+  padding: 0 4px;
   font-weight: bold;
 }
 label {
@@ -62,6 +60,10 @@ label {
 #results-container {
   float: left;
 }
+
+#results-total {font-size:13px; font-weight:bold;margin-bottom:1em;}
+#results-list { margin-left:1em;}
+#results-list ol {font-weight:bold;}
 h2 {
   font-size: 27px;
 }
