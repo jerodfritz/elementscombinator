@@ -18,6 +18,7 @@ app.get('/', function(req, res) {
       value : value.toFixed(2)
     })
   }
+  results.sort(function(x, y){ return y.value - x.value })
   res.send(JSON.stringify(results));
 });
 

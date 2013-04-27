@@ -3,70 +3,23 @@
   <head>
     <title>Element Combinator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/styles.css" rel="stylesheet" media="screen">
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.csv.js"></script>
-    <style type="text/css">
-      body {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #f5f5f5;
-      }
-
-      .form {
-        max-width: 300px;
-        padding: 19px 29px 29px;
-        margin: 0 auto 20px;
-        background-color: #fff;
-        border: 1px solid #e5e5e5;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-        box-shadow: 0 1px 2px rgba(0,0,0,.05);
-      }
-
-      .form input[type="text"], .form textarea {
-        font-size: 16px;
-        height: auto;
-        margin-bottom: 15px;
-        padding: 7px 9px;
-      }
-      .form textarea {
-        height: 20em
-      }
-      .element-button {
-        -moz-border-radius: 20px;
-        -webkit-border-radius: 20px;
-        -khtml-border-radius: 20px;
-        border-radius: 20px;
-        text-align: center;
-        width: auto;
-        display:inline-block;
-        padding:0 4px;
-      }
-      .results {
-        padding-left: 2em;
-      }
-      .value-label {
-        display:inline-block;
-        width:52px;
-        font-size:14px;
-        font-weight: bold;
-      }
-
-    </style>
-
+    <script src="js/script.js"></script>
   </head>
   <body>
-    <form class="form">
-      <h2 class="form-heading">Enter Elements CSV</h2>
-      <input type="text" id="size" class="input-block-level"  placeholder="Size of Combinations" value="8">
-      <input type="text" id="divisor" class="input-block-level"  placeholder="Divisor" value="4">
-      <textarea id="elements" class="input-block-level"  placeholder="">F,401.79
+    <div id="the-form">
+      <form id="form" class="form">
+        <h2 class="form-heading">Element Combinator</h2>
+        <label>Length</label>
+        <input type="text" id="size" class="input-block-level"  placeholder="Size of Combinations" value="3">
+        <label>Divisor</label>
+        <input type="text" id="divisor" class="input-block-level"  placeholder="Divisor" value="4">
+        <label>Elements</label>
+        <textarea id="elements" class="input-block-level"  placeholder="">F,401.79
 N,335.17
 CO2,317.71
 O,314.05
@@ -82,74 +35,15 @@ S,238.91
 NH3,234.91
 Se,224.90
 </textarea>
-      <button id="process" class="btn btn-large btn-primary" type="submit">
-        Process
-      </button>
-    </form>
-    <div id="calculate" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          x
+        <button id="process" class="btn btn-large btn-primary" type="submit">
+          Calculate Combinations
         </button>
-        <h3 id="myModalLabel">Gathering Results</h3>
-      </div>
-      <div class="modal-body" id="results">
-        <p>
-          …
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">
-          Close
-        </button>
+      </form>
+    </div>
+    <div id="results-container">
+      <div id="results"  class="results">
       </div>
     </div>
+
   </body>
 </html>
-<script>
-  $("#process").click(function() {
-    $("#calculate").modal('show')
-    //alert("process");
-    return false;
-  })
-  $('#calculate').on('show', function() {
-
-    var elements = $.csv.toArrays($('#elements').val());
-    var superset = [];
-    for (var i = 0; i < elements.length; i++) {
-      superset.push({
-        element : elements[i][0],
-        value : elements[i][1],
-        color : '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
-      });
-    }
-
-    $("#results").html("<p style='text-align:center'><img src='http://media.tumblr.com/tumblr_mdl11mGvDG1qd454s.gif'></p>");
-    $.ajax({
-      url : 'http://localhost:4242',
-      data : {
-        superset : superset,
-        size : $('#size').val(),
-        divisor : $('#divisor').val()
-      },
-      success : function(response) {
-        $("#results").html(data);
-        var data = JSON.parse(response);
-        var html = '<div class="results">';
-        for (var i = 0; i < data.length; i++) {
-          var item = data[i];
-          var row = '<div class="row"><div class="value-label">' + item.value + '</div>';
-          for (var ii = 0; ii < item.combo.length; ii++) {
-            var element = item.combo[ii];
-            row += "<div class='element-button' style='background-color:" + element.color + "'>" + element.element + "</div>";
-          }
-          row += "</div>";
-          html += row;
-        }
-        html += "</div>";
-        $("#results").html(html);
-      },
-    });
-  });
-  $("#process").click(); 
-</script>
