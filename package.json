@@ -1,6 +1,6 @@
 {
   "name": "elementcombinator",
-  "description": "a service the reutrns combinations",
+  "description": "a service that returns combinations",
   "version": "0.0.1",
   "private": true,
   "dependencies": {

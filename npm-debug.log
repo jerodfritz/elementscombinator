@@ -1,0 +1,31 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'shrinkwrap' ]
+2 info using npm@1.2.14
+3 info using node@v0.8.22
+4 verbose read json /Users/jerodfritz/Documents/Titanium Studio Workspace/elementcombinator/package.json
+5 warn package.json elementcombinator@0.0.1 No README.md file found!
+6 verbose readInstalled returning undefined
+7 verbose readInstalled returning elementcombinator@0.0.1
+8 error Error: Problems were encountered
+8 error Please correct and try again.
+8 error missing: express@, required by elementcombinator@0.0.1
+8 error     at shrinkwrap_ (/usr/local/lib/node_modules/npm/lib/shrinkwrap.js:28:15)
+8 error     at /usr/local/lib/node_modules/npm/lib/shrinkwrap.js:22:5
+8 error     at /usr/local/lib/node_modules/npm/lib/ls.js:40:30
+8 error     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:118:5
+8 error     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:232:14
+8 error     at asyncMap (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:27:18)
+8 error     at next (/usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:198:5)
+8 error     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:155:7
+8 error     at LOOP (fs.js:1138:14)
+8 error     at process.startup.processNextTick.process._tickCallback (node.js:245:9)
+9 error If you need help, you may report this log at:
+9 error     <http://github.com/isaacs/npm/issues>
+9 error or email it to:
+9 error     <npm-@googlegroups.com>
+10 error System Darwin 11.4.2
+11 error command "node" "/usr/local/bin/npm" "shrinkwrap"
+12 error cwd /Users/jerodfritz/Documents/Titanium Studio Workspace/elementcombinator
+13 error node -v v0.8.22
+14 error npm -v 1.2.14
+15 verbose exit [ 1, true ]
